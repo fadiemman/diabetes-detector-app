@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Node / React
+node_modules/
+dist/
+build/
+.env
+.env.local
+
+# Data (large/raw datasets shouldn't live in git)
+ml/data/raw/
+ml/data/processed/
+*.csv
+!ml/data/sample/*.csv
+
+# Models
+*.pkl
+*.joblib
+*.onnx
+*.h5
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
