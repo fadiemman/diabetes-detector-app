@@ -86,5 +86,18 @@ you use it here."
   (e.g. "heart rate over the last few seconds"), as opposed to one fixed number for an entire
   recording.
 
+## Day 6 terms
+
+- **EDA (exploratory data analysis):** Looking at a dataset with plots and summary statistics
+  before modeling it, specifically to catch problems or surprises early.
+- **Histogram:** A bar chart showing how many data points fall into each range of values — used
+  here to show how glucose readings are spread out across the dataset.
+- **Outlier:** A data point that's unusually different from the rest (e.g. an extremely short
+  recording here) — worth investigating rather than ignoring, since it can either be a real edge
+  case or a sign of a data problem.
+- **Exclusion criteria:** A clearly stated rule for which data points get left out of analysis/
+  training (e.g. "recordings shorter than 3 seconds"), documented so the decision is transparent
+  and repeatable rather than an invisible judgment call.
+
 *(More terms get added here at the end of every session — this file should read like a
 cheat-sheet by the time the project is done.)*

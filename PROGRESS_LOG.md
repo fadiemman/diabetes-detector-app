@@ -117,3 +117,23 @@ with pandas.
 
 **Next up (Day 6):** plot a few real PPG waveforms and the glucose distribution — the actual EDA
 (exploratory data analysis).
+
+---
+
+### 2026-08-06 — Day 6: EDA — real waveforms and the true glucose distribution
+
+- Wrote `ml/notebooks/day6_eda.py`, which reconstructs 62 distinct recordings (undoing the
+  interleaved row structure) and plots: the glucose distribution correctly measured once per
+  recording (`docs/figures/glucose_distribution.png`), and the actual PPG waveform for the
+  lowest- and highest-glucose recordings (`docs/figures/example_waveforms.png`) — both show a
+  clean, repeating heartbeat pattern, a good sign.
+- Corrected a small misunderstanding from Day 5: the `index` column is one continuous recording
+  ID across the whole dataset, not reset per patient — doesn't change any conclusion, just a
+  clearer mental model.
+- Flagged a real data quality issue: recording lengths vary from 722 to 19,825 samples — the
+  shortest ones (all from patient 16) are under half a second, likely too short to contain even
+  one full heartbeat. Decided to exclude recordings below a minimum-length threshold starting
+  Day 7, rather than silently including unreliable ones.
+
+**Next up (Day 7):** clean/filter the signal and segment each (sufficiently long) recording into
+individual heartbeat cycles.
