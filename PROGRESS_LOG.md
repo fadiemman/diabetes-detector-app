@@ -94,3 +94,26 @@ one(s) to build with.
 
 **Next up (Day 5):** download the chosen dataset into `ml/data/raw/` and do a first inspection
 with pandas.
+
+---
+
+### 2026-08-06 — Day 5: Got the real data, and a detour
+
+- Downloaded the Mendeley Mazandaran dataset (via the user's browser, since this environment
+  can't reach data-hosting sites directly) — 67 raw signal `.mat` files, 67 label `.mat` files,
+  and figures, now in `ml/data/raw/`.
+- Hit a real blocker: the label files store glucose values as MATLAB "table" objects, a
+  proprietary format. Neither Python (scipy) nor Octave (installed specifically to double-check)
+  could decode them without actual MATLAB software.
+- Found that the same dataset's creator had already exported a clean CSV version to Kaggle
+  ("PPG signal with Blood sugar level data") — same subjects/recordings, already unpacked. Had
+  the user download and upload that instead.
+- Did the first real inspection in `docs/03_data_inspection.md`: 844,946 rows, 22 patients (one
+  missing from this export), zero missing values, and — importantly — verified the glucose
+  labels are correctly matched to the right recording despite an unusual interleaved row
+  ordering. Also flagged that some pre-computed feature columns look like rolling/windowed
+  estimates rather than one-per-recording values, so we'll compute our own features later rather
+  than trust them blindly.
+
+**Next up (Day 6):** plot a few real PPG waveforms and the glucose distribution — the actual EDA
+(exploratory data analysis).

@@ -74,5 +74,17 @@ you use it here."
   "NC" means non-commercial use only, "ND" means you can't redistribute a modified version of the
   dataset itself. Worth checking before building on any public dataset.
 
+## Day 5 terms
+
+- **Data integrity check:** Verifying that a dataset actually means what it claims to (e.g.
+  confirming a label really matches the right row) before trusting it for anything — rather than
+  assuming a downloaded file is correct.
+- **Interleaved / round-robin data:** Rows from several different recordings mixed together in
+  rotating order (recording A's 1st sample, B's 1st sample, C's 1st sample, then A's 2nd sample...)
+  rather than stored one recording after another.
+- **Rolling / windowed feature:** A value recalculated periodically over a moving slice of time
+  (e.g. "heart rate over the last few seconds"), as opposed to one fixed number for an entire
+  recording.
+
 *(More terms get added here at the end of every session — this file should read like a
 cheat-sheet by the time the project is done.)*

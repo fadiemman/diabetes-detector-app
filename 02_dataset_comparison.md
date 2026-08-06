@@ -62,3 +62,13 @@ with. We'll be upfront in the README about its narrow glucose range. Once the fu
 dataset to try, to see if the approach holds up on a much larger, more realistic sample.
 
 **Next up (Day 5):** download the Mendeley dataset into `ml/data/raw/` and do a first inspection.
+
+## Update (Day 5) — switched to the Kaggle CSV export of the same data
+
+The raw Mendeley `.mat` label files turned out to store glucose values as MATLAB "table" objects,
+a proprietary format that neither Python (scipy) nor Octave could decode without real MATLAB
+software (confirmed by actually trying both, not just assuming). Rather than give up on this
+dataset, we found that its own creator had already exported it to a clean CSV on Kaggle
+("PPG signal with Blood sugar level data" — Candidate 3 above, which we'd set aside as
+unverified). It's the same subjects and recordings, already unpacked into a usable format, so
+we're using that CSV going forward. See `docs/03_data_inspection.md` for the full inspection.
