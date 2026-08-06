@@ -58,5 +58,21 @@ you use it here."
 - **Feature engineering:** Turning raw data (like a waveform) into meaningful numeric measurements
   (like peak sharpness or heart rate) that a machine learning model can actually learn from.
 
+## Day 4 terms
+
+- **Ground truth:** The real, trusted measurement used as the "correct answer" a model is trained
+  to predict — here, an actual glucose reading, not a guess.
+- **Glucometer:** A handheld device that measures blood glucose from a finger-prick blood sample
+  — the standard, invasive way people with diabetes check their levels at home.
+- **Continuous glucose monitor (CGM):** A wearable sensor (e.g. Dexcom) that automatically reads
+  glucose every few minutes without finger-pricks, usually via a small sensor under the skin.
+- **Transmission vs. reflectance PPG:** Transmission PPG shines light through tissue (e.g. a
+  fingertip, light passing all the way through) — how a phone camera + flash setup works.
+  Reflectance PPG shines light in and measures what bounces back (e.g. a wrist-worn sensor).
+  Different placements can produce meaningfully different waveform shapes.
+- **Dataset license (e.g. CC BY-NC-ND):** The legal terms for how a public dataset may be used —
+  "NC" means non-commercial use only, "ND" means you can't redistribute a modified version of the
+  dataset itself. Worth checking before building on any public dataset.
+
 *(More terms get added here at the end of every session — this file should read like a
 cheat-sheet by the time the project is done.)*

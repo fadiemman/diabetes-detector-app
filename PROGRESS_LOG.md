@@ -77,3 +77,20 @@ from it is scientifically hard.
 
 **Next up (Day 4):** compare the candidate public PPG + blood-glucose datasets and pick which
 one(s) to build with.
+
+---
+
+### 2026-08-06 — Day 4: Dataset comparison and choice
+
+- Researched and compared three candidate public datasets in `docs/02_dataset_comparison.md`:
+  the Mendeley "Mazandaran" fingertip PPG + glucometer dataset (23 subjects, 67 recordings,
+  2175 Hz), the PhysioCGM multimodal dataset (10 subjects, wrist PPG + Dexcom CGM, multi-day),
+  and a Kaggle dataset that couldn't be fully verified.
+- **Decision:** start with the Mendeley Mazandaran dataset — it's the closest match to our
+  fingertip-camera concept and uses real glucometer readings as ground truth, even though it's
+  small and skewed toward near-normal glucose values (a limitation we're documenting honestly
+  rather than hiding). PhysioCGM is noted as a strong stretch dataset for later, once the
+  pipeline works end to end.
+
+**Next up (Day 5):** download the chosen dataset into `ml/data/raw/` and do a first inspection
+with pandas.
