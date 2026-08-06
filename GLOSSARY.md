@@ -99,5 +99,20 @@ you use it here."
   training (e.g. "recordings shorter than 3 seconds"), documented so the decision is transparent
   and repeatable rather than an invisible judgment call.
 
+## Day 7 terms
+
+- **Bandpass filter:** A filter that keeps only a chosen range of frequencies (here, 0.5-8 Hz —
+  the plausible heart-rate range) and removes everything slower or faster than that range.
+- **Numerical stability (of a filter):** Whether a computation stays well-behaved and accurate,
+  or blows up into meaningless huge/tiny numbers due to how it's represented internally — a real
+  bug we hit and fixed today by switching filter representations.
+- **Second-order sections (SOS):** A more numerically robust way to represent a digital filter,
+  especially important for higher-order filters or narrow frequency bands at high sample rates.
+- **Dicrotic notch:** A small secondary bump in a PPG waveform shortly after the main heartbeat
+  peak, caused by a reflected pulse wave bouncing back from further in the body.
+- **Resampling (a signal):** Converting a signal to a different number of points while preserving
+  its overall shape — used here so heartbeat cycles of different lengths (different heart rates)
+  can still be compared point-for-point.
+
 *(More terms get added here at the end of every session — this file should read like a
 cheat-sheet by the time the project is done.)*

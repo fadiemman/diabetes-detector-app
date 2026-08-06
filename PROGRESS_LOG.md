@@ -137,3 +137,23 @@ with pandas.
 
 **Next up (Day 7):** clean/filter the signal and segment each (sufficiently long) recording into
 individual heartbeat cycles.
+
+---
+
+### 2026-08-06 — Day 7: Filtering, segmentation, and a real bug fixed
+
+- Wrote `ml/notebooks/day7_preprocessing.py`: drops recordings under 4 seconds (7 of 62 dropped),
+  bandpass-filters (0.5-8 Hz) and z-score normalizes the rest, then detects heartbeats and cuts
+  each recording into individual, fixed-length (resampled) heartbeat segments.
+- Hit and fixed a real, silent bug: the first version of the filter produced numerically unstable
+  garbage (values around 10^110) due to how `scipy.signal.butter` represented the filter at this
+  sample rate/passband combination — switched to the more robust "second-order sections" (SOS)
+  form, which fixed it completely. No error was thrown; it required actually inspecting
+  intermediate values to catch.
+- Extracted 474 individual heartbeat segments from the 55 usable recordings. Visual sanity check
+  (in `docs/05_preprocessing.md`) shows the segments line up consistently in shape.
+- Documented that peak detection is a tuned heuristic (capped at a plausible 150 bpm to avoid
+  mistaking the PPG waveform's "dicrotic notch" for a second heartbeat), not a perfect solution.
+
+**Next up (Day 8):** turn each heartbeat segment into meaningful numeric features (heart rate,
+peak ratios, area under the curve) for the model to actually learn from.
