@@ -157,3 +157,22 @@ individual heartbeat cycles.
 
 **Next up (Day 8):** turn each heartbeat segment into meaningful numeric features (heart rate,
 peak ratios, area under the curve) for the model to actually learn from.
+
+---
+
+### 2026-08-06 — Day 8: Feature engineering
+
+- Went back and added `cycle_length_samples`/`heart_rate_bpm` to Day 7's segment output (needed
+  for real heart-rate features, missed on the first pass).
+- Wrote `ml/notebooks/day8_features.py`: computes 7 shape/timing features per heartbeat
+  (systolic/diastolic peak amplitude, reflection index, pulse amplitude, pulse width, area under
+  curve, heart rate), then aggregates to **one row per recording** (55 rows) rather than one row
+  per heartbeat — important, since the true glucose label only exists per recording, and
+  modeling at the heartbeat level would let the same recording leak across train/test later.
+  Also computed heart rate variability properly at the recording level.
+- Found `pulse_width_half_height` is nearly constant/uninformative, a side effect of our
+  peak-to-peak segmentation choice — flagged rather than hidden, to revisit at Day 10.
+- Ran a correlation sanity check against glucose: all weak (under ~0.3), matching Day 3's
+  expectation that PPG-glucose signal is indirect and weak, not a modeling failure.
+
+**Next up (Day 9):** build the train/validation/test split on the 55 recording-level rows.

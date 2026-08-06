@@ -72,6 +72,7 @@ def segment_heartbeats(filtered, fs):
     min_distance = int(fs * 60 / 150)  # assume max plausible heart rate ~150 bpm
     peaks, _ = find_peaks(filtered, distance=min_distance, prominence=0.5)
     segments = []
+    cycle_lengths = []
     for i in range(len(peaks) - 1):
         start, end = peaks[i], peaks[i + 1]
         cycle = filtered[start:end]
@@ -82,7 +83,8 @@ def segment_heartbeats(filtered, fs):
         x_new = np.linspace(0, 1, SEGMENT_LENGTH)
         resampled = np.interp(x_new, x_old, cycle)
         segments.append(resampled)
-    return segments, peaks
+        cycle_lengths.append(end - start)  # samples between this beat's peak and the next
+    return segments, cycle_lengths, peaks
 
 
 def main():
@@ -103,17 +105,19 @@ def main():
 
         filtered = bandpass_filter(raw, FS)
         normalized = zscore(filtered)
-        segments, peaks = segment_heartbeats(normalized, FS)
+        segments, cycle_lengths, peaks = segment_heartbeats(normalized, FS)
 
         if example_raw is None and len(segments) >= 5:
             example_raw, example_filtered, example_peaks = raw, normalized, peaks
 
-        for seg_i, seg in enumerate(segments):
+        for seg_i, (seg, cyc_len) in enumerate(zip(segments, cycle_lengths)):
             all_segments.append({
                 "patient_id": pid,
                 "recording_index": idx,
                 "heartbeat_index": seg_i,
                 "glucose": rec["glucose"],
+                "cycle_length_samples": cyc_len,
+                "heart_rate_bpm": 60.0 * FS / cyc_len,
                 **{f"p{i}": v for i, v in enumerate(seg)},
             })
 

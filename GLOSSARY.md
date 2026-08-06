@@ -114,5 +114,18 @@ you use it here."
   its overall shape — used here so heartbeat cycles of different lengths (different heart rates)
   can still be compared point-for-point.
 
+## Day 8 terms
+
+- **Reflection index:** A real PPG shape feature — the ratio of the secondary (dicrotic notch)
+  peak height to the main systolic peak height, weakly linked in research to arterial stiffness.
+- **Aggregation:** Combining many individual values (e.g. all heartbeats in one recording) into
+  one summary value per group (e.g. their mean and standard deviation), so each real-world
+  example (one recording) is represented once rather than many times.
+- **Label leakage:** When information about the true answer accidentally "leaks" into how data is
+  split or prepared, letting a model appear more accurate than it really is — e.g. training and
+  testing on different heartbeats from the very same recording, which share the same true label.
+- **Correlation:** A number (from -1 to 1) describing how strongly two things move together — near
+  0 means little relationship, near +1 or -1 means a strong one.
+
 *(More terms get added here at the end of every session — this file should read like a
 cheat-sheet by the time the project is done.)*
